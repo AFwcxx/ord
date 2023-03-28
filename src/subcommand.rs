@@ -3,6 +3,7 @@ use super::*;
 pub mod epochs;
 pub mod find;
 pub mod giibs;
+pub mod gioo;
 mod index;
 pub mod info;
 pub mod list;
@@ -32,6 +33,8 @@ pub(crate) enum Subcommand {
   Index,
   #[clap(about = "Get inscription id by sat")]
   Giibs(giibs::Giibs),
+  #[clap(about = "Get inscriptions on output")]
+  Gioo(gioo::Gioo),
   #[clap(about = "Display index statistics")]
   Info(info::Info),
   #[clap(about = "List the satoshis in an output")]
@@ -58,6 +61,7 @@ impl Subcommand {
       Self::Find(find) => find.run(options),
       Self::Index => index::run(options),
       Self::Giibs(giibs) => giibs.run(options),
+      Self::Gioo(gioo) => gioo.run(options),
       Self::Info(info) => info.run(options),
       Self::List(list) => list.run(options),
       Self::Parse(parse) => parse.run(),
