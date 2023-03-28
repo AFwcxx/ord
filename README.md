@@ -1,6 +1,13 @@
 `ord`
 =====
 
+Added feature from the original repo:
+
+1. giibs: Get Inscription Id By Sats
+
+-------------------------------------------------
+
+
 `ord` is an index, block explorer, and command-line wallet. It is experimental
 software with no warranty. See [LICENSE](LICENSE) for more details.
 
