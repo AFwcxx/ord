@@ -15,6 +15,7 @@ pub struct Output {
   pub timestamp: u32,
   pub media_type: String,
   pub media_content: String,
+  pub media_size: usize
 }
 
 
@@ -28,6 +29,7 @@ impl Gie {
 
         let mut media_type: String = String::new();
         let mut media_content: String = String::new();
+        let mut media_size: usize = 0;
 
         match inscription {
             Some(inscription) => {
@@ -36,6 +38,11 @@ impl Gie {
                     .unwrap_or("application/octet-stream")
                     .parse()
                     .unwrap();
+
+                match inscription.content_length() {
+                    Some(size) => media_size = size,
+                    None => {}
+                };
 
                 match inscription.into_body() {
                     Some(body) => media_content = base64::encode(body),
@@ -54,7 +61,8 @@ impl Gie {
                     sat: entry.sat,
                     timestamp: entry.timestamp,
                     media_type,
-                    media_content
+                    media_content,
+                    media_size
                 })?;
                 Ok(())
             }
