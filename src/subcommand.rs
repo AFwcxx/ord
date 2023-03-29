@@ -1,9 +1,10 @@
 use super::*;
 
-pub mod epochs;
-pub mod find;
 pub mod giibs;
 pub mod gioo;
+pub mod gie;
+pub mod epochs;
+pub mod find;
 mod index;
 pub mod info;
 pub mod list;
@@ -23,6 +24,12 @@ fn print_json(output: impl Serialize) -> Result {
 
 #[derive(Debug, Parser)]
 pub(crate) enum Subcommand {
+  #[clap(about = "Get inscription id by sat")]
+  Giibs(giibs::Giibs),
+  #[clap(about = "Get inscriptions on output")]
+  Gioo(gioo::Gioo),
+  #[clap(about = "Get inscriptions entry")]
+  Gie(gie::Gie),
   #[clap(about = "List the first satoshis of each reward epoch")]
   Epochs,
   #[clap(about = "Run an explorer server populated with inscriptions")]
@@ -31,10 +38,6 @@ pub(crate) enum Subcommand {
   Find(find::Find),
   #[clap(about = "Update the index")]
   Index,
-  #[clap(about = "Get inscription id by sat")]
-  Giibs(giibs::Giibs),
-  #[clap(about = "Get inscriptions on output")]
-  Gioo(gioo::Gioo),
   #[clap(about = "Display index statistics")]
   Info(info::Info),
   #[clap(about = "List the satoshis in an output")]
@@ -56,12 +59,13 @@ pub(crate) enum Subcommand {
 impl Subcommand {
   pub(crate) fn run(self, options: Options) -> Result {
     match self {
+      Self::Giibs(giibs) => giibs.run(options),
+      Self::Gioo(gioo) => gioo.run(options),
+      Self::Gie(gie) => gie.run(options),
       Self::Epochs => epochs::run(),
       Self::Preview(preview) => preview.run(),
       Self::Find(find) => find.run(options),
       Self::Index => index::run(options),
-      Self::Giibs(giibs) => giibs.run(options),
-      Self::Gioo(gioo) => gioo.run(options),
       Self::Info(info) => info.run(options),
       Self::List(list) => list.run(options),
       Self::Parse(parse) => parse.run(),
