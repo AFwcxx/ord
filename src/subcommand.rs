@@ -1,6 +1,7 @@
 use super::*;
 
 pub mod giibs;
+pub mod giibsp;
 pub mod gioo;
 pub mod gie;
 pub mod epochs;
@@ -26,6 +27,8 @@ fn print_json(output: impl Serialize) -> Result {
 pub(crate) enum Subcommand {
   #[clap(about = "Get inscription id by sat")]
   Giibs(giibs::Giibs),
+  #[clap(about = "Get inscription id by satpoint")]
+  Giibsp(giibsp::Giibsp),
   #[clap(about = "Get inscriptions on output")]
   Gioo(gioo::Gioo),
   #[clap(about = "Get inscriptions entry")]
@@ -60,6 +63,7 @@ impl Subcommand {
   pub(crate) fn run(self, options: Options) -> Result {
     match self {
       Self::Giibs(giibs) => giibs.run(options),
+      Self::Giibsp(giibsp) => giibsp.run(options),
       Self::Gioo(gioo) => gioo.run(options),
       Self::Gie(gie) => gie.run(options),
       Self::Epochs => epochs::run(),

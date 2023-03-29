@@ -14,8 +14,8 @@ pub struct Output {
   pub sat: Option<Sat>,
   pub timestamp: u32,
   pub media_type: String,
+  pub media_size: usize,
   pub media_content: String,
-  pub media_size: usize
 }
 
 
@@ -61,8 +61,8 @@ impl Gie {
                     sat: entry.sat,
                     timestamp: entry.timestamp,
                     media_type,
-                    media_content,
-                    media_size
+                    media_size,
+                    media_content
                 })?;
                 Ok(())
             }
