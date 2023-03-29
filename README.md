@@ -4,7 +4,8 @@
 Added feature from the original repo:
 
 1. giibs: Get Inscription Id By Sats
-1. gioo: Get Inscriptions By Outpoint
+2. gioo: Get Inscriptions By Outpoint
+3. gie: Get Inscriptions Entry
 
 -------------------------------------------------
 
