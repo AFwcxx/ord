@@ -7,6 +7,7 @@ Added feature from the original repo:
 2. giibsp: Get Inscription Id By SatPoint
 3. gioo: Get Inscriptions By Outpoint
 4. gie: Get Inscriptions Entry
+5. list and find does not index. use cron.
 
 -------------------------------------------------
 
